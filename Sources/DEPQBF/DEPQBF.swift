@@ -61,6 +61,16 @@ public class DEPQBF {
         }
     }
     
+    /// - returns:
+    ///   True if the variable is assigned true, False if the variable is assigned false, nil if the assignment of the variable is undefined
+    public func getValue(_ variable : Int) -> Bool? {
+        switch qdpll_get_value(solver, UInt32(variable)) {
+        case QDPLL_ASSIGNMENT_TRUE: return true
+        case QDPLL_ASSIGNMENT_FALSE: return false
+        default: return nil
+        }
+    }
+    
     public func reset() {
         qdpll_reset(solver)
     }
